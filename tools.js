@@ -4,7 +4,8 @@
   var TOOLS=[
     {id:"aadi",name:"Aadi",desc:"8 aksharas · I4 O O · chatusra jathi triputa",pat:"cfffcwcw"},
     {id:"rupaka",name:"Rupaka",desc:"3 counts · clap, clap, wave · “ta ki ta”",pat:"ccw"},
-    {id:"misra-chapu",name:"Misra chapu",desc:"7 aksharas · 3 + 2 + 2 · “ta ki ta · ta ka · di mi”",pat:"wccc"}
+    {id:"misra-chapu",name:"Misra chapu",desc:"7 aksharas · 3 + 2 + 2 · “ta ki ta · ta ka · di mi”",pat:"wccc"},
+    {id:"khanda-chapu",name:"Khanda chapu",desc:"5 aksharas · 2 + 1 + 2 · “ta ka · ta · ki ta”",pat:"ccc"}
   ];
   var base=document.currentScript.src.replace(/tools\.js[^/]*$/,"");
   var cur=document.body.getAttribute("data-tool")||"home";
