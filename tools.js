@@ -6,8 +6,8 @@
     {id:"rupaka",name:"Rupaka",desc:"3 counts · clap, clap, wave · “ta ki ta”",pat:"ccw"},
     {id:"misra-chapu",name:"Misra chapu",desc:"7 aksharas · 3 + 2 + 2 · “ta ki ta · ta ka · di mi”",pat:"wccc"},
     {id:"khanda-chapu",name:"Khanda chapu",desc:"5 aksharas · 2 + 1 + 2 · “ta ka · ta · ki ta”",pat:"ccc"},
-    {id:"khanda-triputa",name:"Khanda triputa",desc:"9 aksharas · I5 O O · khanda jathi triputa",pat:"cffffcwcw"},
     {id:"tisra-chapu",name:"Tisra chapu",desc:"3 aksharas · 1 + 2 · “ta · ki ta”",pat:"cc"},
+    {id:"khanda-triputa",name:"Khanda triputa",desc:"9 aksharas · I5 O O · khanda jathi triputa",pat:"cffffcwcw"},
     {id:"tisra-triputa",name:"Tisra triputa",desc:"7 aksharas · I3 O O · tisra jathi triputa",pat:"cffcwcw"}
   ];
   var base=document.currentScript.src.replace(/tools\.js[^/]*$/,"");
