@@ -96,14 +96,14 @@ input[type=range]{width:100%;accent-color:var(--kumkum);height:28px}
 .seq svg{width:62px;height:62px}
 .seq figcaption{font-size:.75rem;color:var(--muted);line-height:1.2}
 .marks{display:flex;gap:8px;justify-content:center}
-.tabs{display:flex;gap:4px;margin:0 0 20px;padding:4px;background:var(--surface);border:1px solid var(--line);border-radius:12px}
-.tabs a{flex:1;text-align:center;padding:8px;border-radius:9px;color:var(--ink);text-decoration:none;font-weight:600}
+.tabs{display:flex;gap:2px;margin:0 0 20px;padding:4px;background:var(--surface);border:1px solid var(--line);border-radius:12px;min-height:46px}
+.tabs a{flex:1;min-width:0;text-align:center;padding:8px 2px;border-radius:9px;color:var(--ink);text-decoration:none;font-weight:600;font-size:.88rem;line-height:1.2;display:flex;align-items:center;justify-content:center}
 .tabs a[aria-current]{background:var(--ink);color:var(--bg)}
 </style>
 </head>
-<body>
+<body data-tool="misra-chapu">
 <main>
-  <nav class="tabs" aria-label="Tools"><a href="../">Home</a><a href="../rupaka/">Rupaka</a><a href="../misra-chapu/" aria-current="page">Misra chapu</a></nav>
+  <nav class="tabs" id="tabs" aria-label="Tools"></nav>
   <h1>Misra chapu</h1>
   <p class="sub">7 aksharas grouped 3 + 2 + 2, felt as 3½ beats — “ta ki ta · ta ka · di mi”.</p>
 
@@ -321,5 +321,6 @@ input[type=range]{width:100%;accent-color:var(--kumkum);height:28px}
   syncUI();
 })();
 </script>
+<script src="../tools.js"></script>
 </body>
 </html>
