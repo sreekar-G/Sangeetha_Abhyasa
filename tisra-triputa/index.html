@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tisra jathi triputa thalam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Tamil&family=Mukta+Malar:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ECEEE6; --surface:#F7F8F3; --ink:#22261F; --muted:#5E6458;
+  --kumkum:#A8223A; --brass:#8E6A17; --line:#CDD1C3; --dot:#B9BEAF;
+  color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#191C17; --surface:#22261F; --ink:#E8EADF; --muted:#A3A898;
+    --kumkum:#E8677B; --brass:#D6B25A; --line:#3A3F34; --dot:#4C5245; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#191C17; --surface:#22261F; --ink:#E8EADF; --muted:#A3A898;
+  --kumkum:#E8677B; --brass:#D6B25A; --line:#3A3F34; --dot:#4C5245; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Mukta Malar","Noto Sans Tamil",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:17px;line-height:1.5}
+main{max-width:560px;margin:0 auto;padding:24px 18px 40px}
+h1{font-family:"Tiro Tamil","Noto Serif Tamil",Georgia,serif;font-weight:400;font-size:2.1rem;line-height:1.1;margin:0 0 4px}
+.sub{color:var(--muted);margin:0 0 22px}
+.stage{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px 16px 20px;text-align:center}
+.action{font-family:"Tiro Tamil","Noto Serif Tamil",Georgia,serif;font-size:clamp(2.6rem,12vw,3.6rem);line-height:1;margin:4px 0 2px;min-height:1.1em}
+.count{color:var(--muted);font-size:.95rem;min-height:1.5em}
+.row{display:flex;justify-content:center;align-items:flex-end;gap:6px;margin-top:22px}
+.anga{display:flex;flex-direction:column;align-items:center;gap:8px;padding:0 6px}
+.anga + .anga{border-left:2px solid var(--line);padding-left:12px}
+.anga .beats{display:flex;gap:10px}
+.anga .name{font-size:.8rem;color:var(--muted)}
+.b{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;transition:transform .08s ease,background-color .08s ease}
+.b.clap{background:var(--dot)}
+.b.wave{border:3px solid var(--dot)}
+.b.finger{width:22px;height:22px;margin:11px;background:var(--dot)}
+.b.on.clap{background:var(--kumkum);transform:scale(1.18)}
+.b.on.wave{border-color:var(--kumkum);transform:scale(1.18)}
+.b.on.finger{background:var(--brass);transform:scale(1.35)}
+.b.samam::after{content:"";width:6px;height:6px;border-radius:50%;background:var(--surface)}
+.b.wave.samam::after{background:var(--dot)}
+.syl{display:flex;justify-content:center;flex-wrap:wrap;gap:4px 10px;margin-top:18px;min-height:1.8em;
+  font-family:"Tiro Tamil",Georgia,serif;font-size:1.35rem}
+.syl span{color:var(--muted);opacity:.55;transition:opacity .06s}
+.syl span.on{color:var(--brass);opacity:1}
+.syl span.first{font-weight:700}
+.go{display:block;width:100%;margin:18px 0 0;padding:16px;border:0;border-radius:14px;background:var(--kumkum);color:#fff;
+  font:inherit;font-size:1.2rem;font-weight:700;cursor:pointer}
+.go[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.go:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--brass);outline-offset:3px}
+.ctl{margin-top:26px;display:grid;gap:22px}
+.field label,.field .lbl{display:flex;justify-content:space-between;font-weight:600;margin-bottom:8px}
+.field output{font-family:"Tiro Tamil",Georgia,serif;font-weight:400;font-size:1.25rem;color:var(--kumkum)}
+.tempo{display:flex;align-items:center;gap:10px}
+.tempo button{width:44px;height:44px;flex:none;border-radius:50%;border:1px solid var(--line);background:var(--surface);
+  color:var(--ink);font:inherit;font-size:1.3rem;cursor:pointer}
+input[type=range]{width:100%;accent-color:var(--kumkum);height:28px}
+.seg{display:flex;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface)}
+.seg button{flex:1;min-width:0;padding:10px 4px;border:0;background:transparent;color:var(--ink);font:inherit;font-size:.95rem;cursor:pointer;line-height:1.25}
+.seg button + button{border-left:1px solid var(--line)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg);font-weight:600}
+.seg small{display:block;font-size:.72rem;opacity:.75;font-weight:400}
+.hint{color:var(--muted);font-size:.85rem;margin:8px 0 0}
+.note{color:var(--muted);font-size:.9rem;margin-top:30px;border-top:1px solid var(--line);padding-top:16px}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){.b{transition:none}.b.on{transform:none!important}}
+@media (max-width:380px){.b{width:36px;height:36px}.b.finger{width:18px;height:18px;margin:9px}.anga .beats{gap:6px}.seg button{font-size:.85rem}}
+.hand{width:160px;height:170px;margin:0 auto 6px}
+.hand svg{width:100%;height:100%;display:block}
+.handcap{color:var(--muted);font-size:.9rem;min-height:1.4em;margin-top:4px}
+.h-body{fill:var(--surface)}
+.h-line{fill:none;stroke:var(--ink);stroke-width:1.9;stroke-linejoin:round;stroke-linecap:round}
+.h-shade{fill:var(--ink);opacity:.06}
+.h-det{fill:none;stroke:var(--ink);stroke-width:1.1;stroke-linecap:round;opacity:.55}
+.h-faint{fill:none;stroke:var(--ink);stroke-width:1;stroke-linecap:round;opacity:.18}
+.h-nail{fill:none;stroke:var(--ink);stroke-width:1;opacity:.5}
+.h-on{fill:var(--ink);opacity:.16}
+.h-tap{fill:var(--ink)}
+.h-mark{stroke:var(--muted);stroke-width:2.2;stroke-linecap:round;fill:none}
+.guide{margin-top:32px}
+.guide h2{font-family:"Tiro Tamil",Georgia,serif;font-weight:400;font-size:1.5rem;margin:0 0 4px}
+.guide>p{color:var(--muted);margin:0 0 14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 14px 12px;margin-bottom:12px}
+.card h3{margin:0;font-size:1.05rem}
+.card h3 span{color:var(--kumkum);font-family:"Tiro Tamil",Georgia,serif;font-weight:400;margin-left:6px}
+.card p{margin:4px 0 10px;color:var(--muted);font-size:.92rem}
+.seq{display:flex;gap:6px;flex-wrap:wrap}
+.seq figure{margin:0;width:70px;text-align:center}
+.seq svg{width:62px;height:62px}
+.seq figcaption{font-size:.75rem;color:var(--muted);line-height:1.2}
+@media (max-width:420px){.anga{padding:0 3px}.anga + .anga{padding-left:5px}.anga .beats{gap:3px}.b{width:28px;height:28px}.b.finger{width:13px;height:13px;margin:7.5px}.anga .name{font-size:.72rem}}
+.tabs{display:flex;gap:2px;margin:0 0 20px;padding:4px;background:var(--surface);border:1px solid var(--line);border-radius:12px;min-height:46px}
+.tabs a{flex:1;min-width:0;text-align:center;padding:8px 2px;border-radius:9px;color:var(--ink);text-decoration:none;font-weight:600;font-size:.88rem;line-height:1.2;display:flex;align-items:center;justify-content:center}
+.tabs a[aria-current]{background:var(--ink);color:var(--bg)}
+</style>
+</head>
+<body data-tool="tisra-triputa">
+<main>
+  <nav class="tabs" id="tabs" aria-label="Tools"></nav>
+  <h1>Tisra jathi triputa</h1>
+  <p class="sub" id="sub">A tisra laghu and two druthams, 3 + 2 + 2 = 7 aksharas.</p>
+
+  <section class="stage">
+    <div class="hand" id="hand" aria-hidden="true"></div>
+    <div class="action" id="action">Ready</div>
+    <div class="handcap" id="handcap"></div>
+    <div class="count" id="count">Press start, then keep thalam with your hand</div>
+    <div class="row" id="row"></div>
+    <div class="syl" id="syl" aria-hidden="true"></div>
+    <button class="go" id="go" aria-pressed="false">Start</button>
+  </section>
+
+  <div class="ctl">
+    <div class="field">
+      <span class="lbl">Gathi / Nadai</span>
+      <div class="seg" id="nadai">
+        <button data-v="1" aria-pressed="true">1<small>plain</small></button>
+        <button data-v="3" aria-pressed="false">3<small>tisra</small></button>
+        <button data-v="4" aria-pressed="false">4<small>chatusra</small></button>
+        <button data-v="5" aria-pressed="false">5<small>khanda</small></button>
+        <button data-v="7" aria-pressed="false">7<small>misra</small></button>
+      </div>
+      <p class="hint">Number of syllables inside each beat.</p>
+    </div>
+
+    <div class="field">
+      <label for="bpm">Tempo <output id="bpmOut">80</output></label>
+      <div class="tempo">
+        <button id="minus" aria-label="Slower">−</button>
+        <input type="range" id="bpm" min="30" max="220" value="80">
+        <button id="plus" aria-label="Faster">+</button>
+      </div>
+      <p class="hint">Beats per minute. Spacebar starts and stops.</p>
+    </div>
+
+    <div class="field">
+      <label for="vol">Volume <output id="volOut">80%</output></label>
+      <input type="range" id="vol" min="0" max="100" value="80">
+    </div>
+  </div>
+
+  <section class="guide">
+    <h2>Hand postures for Tisra jathi triputa</h2>
+    <p>Rest your right hand on your right thigh (or on your left palm). It is one tisra laghu followed by two druthams.</p>
+    <div class="card">
+      <h3>Tisra jathi triputa<span>I3 O O</span></h3>
+      <p>Clap, then little and ring finger counts (tisra laghu); then clap, wave (drutham); clap, wave (drutham). Recited “ta ki ta · ta ka · di mi”.</p>
+      <div class="seq" data-seq="clap,little,ring,clap,wave,clap,wave"></div>
+    </div>
+  </section>
+
+  <p class="note">Sharp clap for claps, soft low tone for the wave, wooden tick for finger counts, a deeper accent on samam, and light ticks for each gathi syllable. On iPhone, turn off silent mode if you hear nothing.</p>
+</main>
+
+<script>
+(function(){
+  var THREE=[{a:"clap",t:"Clap",g:"r"},{a:"clap",t:"Clap",g:"r"},{a:"wave",t:"Wave",g:"r"}];
+  var DL=[{a:"clap",t:"Clap",g:"d"},{a:"wave",t:"Wave",g:"d"},
+    {a:"clap",t:"Clap",g:"l"},{a:"finger",t:"Little finger",g:"l",f:"little"},{a:"finger",t:"Ring finger",g:"l",f:"ring"},{a:"finger",t:"Middle finger",g:"l",f:"middle"}];
+  var LD=[DL[2],DL[3],DL[4],DL[5],DL[0],DL[1]];
+  var SOL={3:["Ta","ki","ta"],4:["Ta","ka","di","mi"],5:["Ta","ka","ta","ki","ta"],7:["Ta","ki","ta","ta","ka","di","mi"]};
+  var GROUP={l:"Laghu (I3)",d1:"Drutham (O)",d2:"Drutham (O)"};
+  var ADI=[{a:"clap",t:"Clap",g:"l"},{a:"finger",t:"Little finger",g:"l",f:"little"},{a:"finger",t:"Ring finger",g:"l",f:"ring"},
+    {a:"clap",t:"Clap",g:"d1"},{a:"wave",t:"Wave",g:"d1"},{a:"clap",t:"Clap",g:"d2"},{a:"wave",t:"Wave",g:"d2"}];
+  var S={mode:"3",bpm:80,order:"dl",nadai:1,vol:0.8};
+  try{var sv=JSON.parse(localStorage.getItem("tisratriputa1")||"null");if(sv)Object.assign(S,sv)}catch(e){}
+  if([1,3,4,5,7].indexOf(S.nadai)<0)S.nadai=1;
+  function save(){try{localStorage.setItem("tisratriputa1",JSON.stringify(S))}catch(e){}}
+  var $=function(id){return document.getElementById(id)};
+  var row=$("row"),syl=$("syl"),actionEl=$("action"),countEl=$("count"),go=$("go");
+  var beats=[],sylEls=[];
+
+  function pattern(){return ADI}
+  function build(){
+    row.innerHTML="";beats=[];
+    var p=pattern(),groups=[];
+    p.forEach(function(b,i){var l=groups[groups.length-1];if(!l||l.key!==b.g){l={key:b.g,items:[]};groups.push(l)}l.items.push({b:b,i:i})});
+    groups.forEach(function(gr){
+      var a=document.createElement("div");a.className="anga";
+      var bs=document.createElement("div");bs.className="beats";
+      gr.items.forEach(function(it){var d=document.createElement("span");d.className="b "+it.b.a+(it.i===0?" samam":"");bs.appendChild(d);beats[it.i]=d});
+      var n=document.createElement("span");n.className="name";n.textContent=GROUP[gr.key];
+      a.appendChild(bs);a.appendChild(n);row.appendChild(a);
+    });
+    syl.innerHTML="";sylEls=[];
+    var words=S.nadai>1?SOL[S.nadai]:["Ta","ki","ta","Ta","ka","Di","mi"];
+    words.forEach(function(w,i){var s=document.createElement("span");s.textContent=w;if(i===0)s.className="first";syl.appendChild(s);sylEls.push(s)});
+  }
+  function syncUI(){
+    $("bpm").value=S.bpm;$("bpmOut").textContent=S.bpm;
+    $("vol").value=Math.round(S.vol*100);$("volOut").textContent=Math.round(S.vol*100)+"%";
+    [["nadai",String(S.nadai)]].forEach(function(x){
+      Array.prototype.forEach.call($(x[0]).querySelectorAll("button"),function(b){b.setAttribute("aria-pressed",String(b.dataset.v===x[1]))});
+    });
+    build();
+  }
+
+  var OUTLINE="M41 150 L40 124 C34 118 26 110 20 100 C15 93 10 86 9 80 C8 74 13 70 18 73 C23 76 28 84 33 89 C33 80 31 70 31 62 L29 27 C29 18 42 17 42 26 L45 56 Q46 58 47 56 L47 19 C47 9 61 9 61 19 L61 55 Q62 57 63 55 L64 24 C64 15 77 16 77 25 L76 58 Q77 60 78 58 L80 39 C80 31 92 32 91 40 L88 66 C92 80 92 100 87 116 L86 150 Z";
+  var FING={index:{d:"M26 60 L27 16 L45.6 16 L45.6 57 Z",tip:[35.5,11]},middle:{d:"M46.6 57 L45 4 L63 4 L61.8 56 Z",tip:[54,3]},
+    ring:{d:"M62.6 56 L62 10 L79 10 L77.2 59 Z",tip:[70.5,9]},little:{d:"M77.6 59 L78 26 L94 28 L89 64 Z",tip:[86,25]}};
+  var BACK='<path class="h-nail" d="M32.6 19.5 v4 q2.9 3.4 5.8 0 v-4 M51.2 12.5 v4.2 q3 3.4 6 0 v-4.2 M67.6 17.5 v4 q2.9 3.4 5.8 0 v-4 M83.8 33.8 v3.4 q2.4 2.8 4.8 0 v-3.4"/>'
+    +'<path class="h-det" d="M32.5 42 q3 -1.8 6.5 0 M50.5 36 q3.5 -1.8 7 0 M67 41 q3 -1.8 6.5 0 M82.5 52 q2.6 -1.6 5.4 0"/>'
+    +'<path class="h-det" d="M33 64 q4 -3 8 -.5 M50 61 q4 -3 8 -.5 M66 63 q4 -3 8 -.5 M80 68 q3 -2.4 6 -.4"/>'
+    +'<path class="h-faint" d="M38 70 C42 90 48 108 52 124 M54 66 C56 88 58 106 60 124 M70 68 C70 88 70 106 68 124 M84 72 C82 90 78 106 74 122"/>'
+    +'<path class="h-det" d="M14 78 q2 -3 5 -1"/>';
+  var PALMSIDE='<path class="h-det" d="M30 40 h9 M30 49 h11 M48 30 h11 M48 42 h12 M64 36 h11 M64 47 h11 M81 47 h8 M81 56 h8"/>'
+    +'<path class="h-det" d="M34 76 C50 70 70 72 90 80 M33 88 C46 84 58 86 70 94 M36 96 C44 104 48 116 50 128"/>'
+    +'<path class="h-faint" d="M58 100 C60 110 60 120 58 130"/>';
+  var _hid=0;
+  function handSVG(kind,f,strike){
+    var up=kind==="wave", id="hc"+(++_hid), g='<defs><clipPath id="'+id+'"><path d="'+OUTLINE+'"/></clipPath></defs>';
+    g+='<path class="h-body" d="'+OUTLINE+'"/>';
+    g+='<path class="h-shade" clip-path="url(#'+id+')" d="M84 78 C94 96 94 120 88 150 L100 150 L100 78 Z"/>';
+    if(f&&FING[f])g+='<path class="h-on" clip-path="url(#'+id+')" d="'+FING[f].d+'"/>';
+    g+=up?PALMSIDE:BACK;
+    g+='<path class="h-line" d="'+OUTLINE.replace(" Z","")+'"/>';
+    if(f&&FING[f])g+='<circle class="h-tap" cx="'+FING[f].tip[0]+'" cy="'+FING[f].tip[1]+'" r="2.6"/>';
+    var body=up?'<g transform="translate(120 0) scale(-1 1)">'+g+'</g>':'<g>'+g+'</g>', extra='';
+    if(strike&&kind==="clap")extra+='<path class="h-mark" d="M32 130 l-9 1 M33 140 l-9 4 M94 130 l9 1 M93 140 l9 4"/>';
+    if(strike&&up)extra+='<path class="h-mark" d="M20 30 A46 46 0 0 0 14 98"/><path class="h-mark" d="M8 91 l6 7 l6 -6"/>';
+    return '<svg viewBox="0 -6 120 156" xmlns="http://www.w3.org/2000/svg">'+body+extra+'</svg>';
+  }
+  var CAP={clap:"Tattu: strike the palm down on the thigh",wave:"Veechu: turn the hand over, back of hand down"};
+  function showHand(b){
+    var k=b?b.a:"clap",f=b&&b.f?b.f:null;
+    $("hand").innerHTML=handSVG(k==="finger"?"clap":k,f,!!b&&k!=="finger");
+    $("handcap").textContent=!b?"Right hand on your thigh, palm down":(f?"Touch the "+f+" finger down":CAP[k]);
+  }
+  Array.prototype.forEach.call(document.querySelectorAll("[data-seq]"),function(el){
+    el.innerHTML=el.dataset.seq.split(",").map(function(x){
+      var isF=FING[x]!==undefined, kind=isF?"clap":x;
+      var cap=isF?(x.charAt(0).toUpperCase()+x.slice(1)):(x==="clap"?"Clap":"Wave");
+      return '<figure>'+handSVG(kind,isF?x:null,!isF)+'<figcaption>'+cap+'</figcaption></figure>';
+    }).join("");
+  });
+
+  var ctx=null,master=null,noiseBuf=null;
+  function initAudio(){
+    if(ctx)return;
+    ctx=new(window.AudioContext||window.webkitAudioContext)();
+    master=ctx.createGain();master.gain.value=S.vol;master.connect(ctx.destination);
+    noiseBuf=ctx.createBuffer(1,ctx.sampleRate*0.3,ctx.sampleRate);
+    var d=noiseBuf.getChannelData(0);for(var i=0;i<d.length;i++)d[i]=Math.random()*2-1;
+  }
+  function env(g,t,pk,dur){g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(pk,t+0.003);g.gain.exponentialRampToValueAtTime(0.0001,t+dur)}
+  function tone(t,f,pk,dur,type){var o=ctx.createOscillator(),g=ctx.createGain();o.type=type||"sine";
+    o.frequency.setValueAtTime(f,t);o.frequency.exponentialRampToValueAtTime(f*0.7,t+dur);env(g,t,pk,dur);o.connect(g);g.connect(master);o.start(t);o.stop(t+dur+0.02)}
+  function noise(t,f,q,pk,dur){var s=ctx.createBufferSource(),bp=ctx.createBiquadFilter(),g=ctx.createGain();
+    s.buffer=noiseBuf;bp.type="bandpass";bp.frequency.value=f;bp.Q.value=q;env(g,t,pk,dur);s.connect(bp);bp.connect(g);g.connect(master);s.start(t);s.stop(t+dur+0.02)}
+  function play(k,t,samam){
+    if(k==="clap"){noise(t,1400,1.2,0.9,0.09);noise(t+0.008,2200,1.5,0.5,0.07)}
+    else if(k==="wave"){noise(t,500,0.8,0.25,0.16);tone(t,260,0.35,0.14)}
+    else if(k==="finger"){tone(t,1050,0.45,0.05,"triangle")}
+    else if(k==="sub"){tone(t,2400,0.14,0.025)}
+    if(samam)tone(t,130,0.7,0.25);
+  }
+
+  var running=false,timer=null,nextTime=0,step=0,sub=0,cycle=0,queue=[],wake=null;
+  function schedule(){
+    var subDur=60/S.bpm/S.nadai;
+    while(nextTime<ctx.currentTime+0.12){
+      var p=pattern();
+      if(sub===0)play(p[step].a,nextTime,step===0);else play("sub",nextTime,false);
+      queue.push({t:nextTime,step:step,sub:sub,cycle:cycle});
+      nextTime+=subDur;sub++;
+      if(sub>=S.nadai){sub=0;step++;if(step>=p.length){step=0;cycle++}}
+    }
+  }
+  function draw(){
+    if(!running)return;
+    var now=ctx.currentTime,cur=null;
+    while(queue.length&&queue[0].t<=now)cur=queue.shift();
+    if(cur){
+      var p=pattern();
+      if(cur.sub===0){
+        beats.forEach(function(el,i){el.classList.toggle("on",i===cur.step)});
+        actionEl.textContent=p[cur.step].t;showHand(p[cur.step]);
+        countEl.textContent="Beat "+(cur.step+1)+" of "+p.length+" · avartanam "+(cur.cycle+1);
+      }
+      var idx=S.nadai>1?cur.sub:cur.step;
+      sylEls.forEach(function(s,i){s.classList.toggle("on",i===idx)});
+    }
+    requestAnimationFrame(draw);
+  }
+  function start(){
+    initAudio();if(ctx.state==="suspended")ctx.resume();
+    running=true;step=0;sub=0;cycle=0;queue=[];nextTime=ctx.currentTime+0.08;
+    timer=setInterval(schedule,25);schedule();requestAnimationFrame(draw);
+    go.textContent="Stop";go.setAttribute("aria-pressed","true");
+    try{if(navigator.wakeLock)navigator.wakeLock.request("screen").then(function(w){wake=w}).catch(function(){})}catch(e){}
+  }
+  function stop(){
+    running=false;clearInterval(timer);queue=[];
+    beats.forEach(function(el){el.classList.remove("on")});sylEls.forEach(function(s){s.classList.remove("on")});
+    actionEl.textContent="Ready";showHand(null);countEl.textContent="Press start, then keep thalam with your hand";
+    go.textContent="Start";go.setAttribute("aria-pressed","false");
+    try{if(wake){wake.release();wake=null}}catch(e){}
+  }
+  function restart(){if(running){stop();start()}}
+  function segHandler(id,key,num){$(id).addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;S[key]=num?+b.dataset.v:b.dataset.v;syncUI();save();restart()})}
+
+  go.addEventListener("click",function(){running?stop():start()});
+  document.addEventListener("keydown",function(e){if(e.code==="Space"&&e.target.tagName!=="BUTTON"&&e.target.tagName!=="INPUT"){e.preventDefault();running?stop():start()}});
+  $("bpm").addEventListener("input",function(e){S.bpm=+e.target.value;$("bpmOut").textContent=S.bpm;save()});
+  $("minus").addEventListener("click",function(){S.bpm=Math.max(30,S.bpm-2);$("bpm").value=S.bpm;$("bpmOut").textContent=S.bpm;save()});
+  $("plus").addEventListener("click",function(){S.bpm=Math.min(220,S.bpm+2);$("bpm").value=S.bpm;$("bpmOut").textContent=S.bpm;save()});
+  $("vol").addEventListener("input",function(e){S.vol=e.target.value/100;$("volOut").textContent=e.target.value+"%";if(master)master.gain.value=S.vol;save()});
+  segHandler("nadai","nadai",true);
+  document.addEventListener("visibilitychange",function(){if(document.visibilityState==="visible"&&running&&navigator.wakeLock)navigator.wakeLock.request("screen").then(function(w){wake=w}).catch(function(){})});
+  syncUI();showHand(null);
+})();
+</script>
+<script src="../tools.js"></script>
+</body>
+</html>
